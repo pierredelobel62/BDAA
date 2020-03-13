@@ -4,9 +4,9 @@ namespace App\Entity;
 
 use Core\Entity\ORMEntity;
 
-class Product extends ORMEntity
+class Customer extends ORMEntity
 {
-    const TABLE_NAME = 'product';
+    const TABLE_NAME = 'customer';
     const PRIMARY_KEY = 'id';
     public $id;
     public $name;

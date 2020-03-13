@@ -65,7 +65,6 @@ abstract class ORMRepository implements ORMRepositoryInterface
                 $request .= $value . ' = ' . array_values($array)[$key];
             }
             $request .= ' WHERE ' . $this->rc->getConstant('PRIMARY_KEY') . ' = ' . $pkValue;
-            var_dump($request);
         }
 
         $this->executePreparedRequest($request, $toBind);
