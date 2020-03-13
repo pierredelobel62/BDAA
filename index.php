@@ -10,18 +10,25 @@ use App\Entity\Product;
 use App\Repository\ProductRepository;
 
 $pr = new ProductRepository();
-// $product = new Product();
-// $product->setField('salut');
 
-// $product = $pr->get(10);
-// var_dump($product);
+// insert
+$product = new Product();
+$product->setField('salut');
+$pr->save($product);
+
+// get one
+$product = $pr->get(15);
+var_dump($product);
 
 
+// update
+$product->setField('Salut MEK');
+$pr->save($product);
 
-// $product->setField('Salut MEK');
-// $pr->save($product);
+// get list
 echo '<h1>Liste des produits : </h1>';
 $products = $pr->getList();
 var_dump($products);
 
+// delete
 // $pr->delete($product);

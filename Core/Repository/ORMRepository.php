@@ -52,12 +52,20 @@ abstract class ORMRepository implements ORMRepositoryInterface
             }
         }
 
-        $fields = implode(', ', array_keys($array));
-        $values = implode(', ', array_values($array));
+        
         if ($insert) {
+            $fields = implode(', ', array_keys($array));
+            $values = implode(', ', array_values($array));
             $request .= '(' . $fields . ') VALUES (' . $values . ')';
         } else {
-            $request .= '(' . $fields . ') = (' . $values . ') WHERE ' . $this->rc->getConstant('PRIMARY_KEY') . ' = ' . $pkValue;
+            foreach (array_keys($array) as $key => $value) {
+                if ($key !== 0) {
+                    $request .= ',';
+                }
+                $request .= $value . ' = ' . array_values($array)[$key];
+            }
+            $request .= ' WHERE ' . $this->rc->getConstant('PRIMARY_KEY') . ' = ' . $pkValue;
+            var_dump($request);
         }
 
         $this->executePreparedRequest($request, $toBind);
